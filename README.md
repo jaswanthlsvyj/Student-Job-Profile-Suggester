@@ -44,6 +44,20 @@ The dataset used in this project contains information about students' scores in 
 - Skills (Top 1 and Top 2)
 - Job Profile (Target variable)
 
+## Usage
+Run the Streamlit web application:
+```bash
+streamlit run app.py
+```
+
+## Models
+The following models are trained and evaluated in this project:
+- Logistic Regression
+- Support Vector Classifier (SVC)
+- Decision Tree Classifier
+- Random Forest Classifier
+
+
 ## Installation
 To run this project, you'll need to install the required libraries. You can do this using pip:
 
