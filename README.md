@@ -1,6 +1,6 @@
 # Student Job Profile Suggester
 
-This project aims to predict suitable job profiles for students based on their scores in various subjects and skills. The predictions are made using machine learning models optimized with Bayesian optimization techniques. A Streamlit web application is provided to allow users to input their scores and receive job suggestions.
+This project aims to predict suitable job profiles for students based on their scores in various subjects and skills. The predictions are made using machine learning models. A Streamlit web application is provided to allow users to input their scores and receive job suggestions.
 
 ## Table of Contents
 - [Features](#features)
@@ -14,7 +14,7 @@ This project aims to predict suitable job profiles for students based on their s
 
 ## Features
 - Predicts suitable job profiles based on student scores in various subjects.
-- Utilizes multiple machine learning models including Logistic Regression, Support Vector Classifier, Decision Tree, Random Forest, and Gradient Boosting.
+- Utilizes multiple machine learning models including Decision Tree, Random Forest, and Gradient Boosting, XG Boosting
 - Implements Bayesian optimization for hyperparameter tuning.
 - Provides a user-friendly web interface using Streamlit for real-time predictions.
 
@@ -52,10 +52,10 @@ streamlit run app.py
 
 ## Models
 The following models are trained and evaluated in this project:
-- Logistic Regression
-- Support Vector Classifier (SVC)
 - Decision Tree Classifier
 - Random Forest Classifier
+- radient Boosting
+- XG Boosting
 
 
 ## Installation

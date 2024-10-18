@@ -53,8 +53,26 @@ def get_user_input():
 
 # Main function to build the Streamlit app
 def main():
+    # Project Title and Description
     st.title("Job Profile Prediction")
-    st.write("Input your skills and scores to predict the most suitable job profile.")
+    st.write("### About This Project")
+    st.write(
+        """
+        This project aims to predict suitable job profiles for students based on their scores in various subjects and skills.
+        The predictions are made using machine learning models.
+        This web application allows users to input their scores and receive job suggestions.
+        """
+    )
+    
+    st.write("### How to Use This Application")
+    st.write(
+        """
+        1. Use the sliders to enter your scores in various subjects including DSA, DBMS, Operating Systems, 
+           Computer Networks, Mathematics, Aptitude, Communication, Problem Solving, Creativity, and Hackathons.
+        2. Select your top two skills from the dropdown lists provided.
+        3. Click the **Predict Job Profile** button to see your predicted job profile based on the entered information.
+        """
+    )
 
     # Get user input
     user_input_original = get_user_input()
@@ -68,7 +86,7 @@ def main():
         predicted_job = profile_encoder.inverse_transform(predicted_profile)
         
         # Display the prediction result
-        st.success(f'Predicted Job Profile : {predicted_job[0]}')  
+        st.success(f'Predicted Job Profile: {predicted_job[0]}')  
 
 
 # Run the app
