@@ -3,20 +3,28 @@ import numpy as np
 import joblib  # Using joblib for loading the saved model
 
 # Assuming the model file is in the same directory as your script (app.py)
-model_path = "Models/best_models.joblib"
+model_path = "Models/best_modelsV2.joblib"
 
 # Initialize model components
-best_models, skill_encoder, profile_encoder = None, None, None
+best_models, scaler, skill_encoder, profile_encoder = None, None, None, None
 
 # Try to load the model and handle errors
 try:
-    best_models, skill_encoder, profile_encoder = joblib.load(model_path)
+    best_models, scaler, skill_encoder, profile_encoder = joblib.load(model_path)
 except FileNotFoundError:
-    st.error("Error: Model file not found!")
+    st.error("Error: Model V2 file not found!")
     st.stop()  # Stop further execution if the model is not loaded
 
 # Function to get user input
 def get_user_input():
+    skillsList = ('Angular', 'Ansible', 'BASH/SHELL', 'C/C++', 'Cisco Packet Tracer', 'Deep Learning',
+                'Figma', 'GitHub', 'HTML/CSS', 'Java', 'JavaScript', 'Linux', 'Machine Learning', 'MySQL',
+                'Node.js', 'Oracle', 'Photoshop', 'PyTorch', 'Python', 'R', 'React', 'TensorFlow', 'Wireshark')
+    
+    # Drop-down for skill selections
+    skill_1 = st.selectbox('Skill 1', skillsList, index=21)
+    skill_2 = st.selectbox('Skill 2', skillsList, index=19)
+
     # Collecting user inputs for each feature using sliders
     dsa = st.slider('DSA score (0-100)', min_value=0, max_value=100, value=72)
     dbms = st.slider('DBMS score (0-100)', min_value=0, max_value=100, value=74)
@@ -29,25 +37,17 @@ def get_user_input():
     creativity = st.slider('Creativity score (0-10)', min_value=0, max_value=10, value=6)
     hackathons = st.slider('Number of Hackathons', min_value=0, max_value=10, value=4)
 
-    skillsList = ('Angular', 'Ansible', 'BASH/SHELL', 'C/C++', 'Cisco Packet Tracer', 'Deep Learning',
-                'Figma', 'GitHub', 'HTML/CSS', 'Java', 'JavaScript', 'Linux', 'Machine Learning', 'MySQL',
-                'Node.js', 'Oracle', 'Photoshop', 'PyTorch', 'Python', 'R', 'React', 'TensorFlow', 'Wireshark')
-    
-    # Drop-down for skill selections
-    skill_1 = st.selectbox('Skill 1', skillsList, index=21)
-    skill_2 = st.selectbox('Skill 2', skillsList, index=19)
-
-    # Encode the skills
-    skill_1_encoded = skill_encoder.transform([skill_1])[0]  
-    skill_2_encoded = skill_encoder.transform([skill_2])[0] 
+    # Ensure input is transformed appropriately for skills
+    user_skills = skill_encoder.transform([[skill_1, skill_2]]).toarray()
 
     # Create a list of numerical features i.e. user_input
-    user_input = [dsa, dbms, os, cn, mathematics, aptitude, communication, problem_solving, creativity, hackathons, skill_1_encoded, skill_2_encoded]
+    user_input = [dsa, dbms, os, cn, mathematics, aptitude, communication, problem_solving, creativity, hackathons]
 
-    # Concatenate the numerical features and skills i.e. user_input
-    user_input = np.array(user_input).reshape(1, -1)
+    # Combine numerical features and encoded skills
+    numerical_features = scaler.transform(np.array(user_input).reshape(1, -1))
+    user_input_transformed = np.hstack((numerical_features, user_skills))  # Combine arrays
 
-    return user_input
+    return user_input_transformed
 
 # Main function to build the Streamlit app
 def main():
