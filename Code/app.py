@@ -29,11 +29,9 @@ def get_user_input():
     creativity = st.slider('Creativity score (0-10)', min_value=0, max_value=10, value=6)
     hackathons = st.slider('Number of Hackathons', min_value=0, max_value=10, value=4)
 
-    skillsList = ('Angular', 'Ansible', 'BASH/SHELL', 'C/C++', 'Cisco Packet tracer', 
-                  'Deep Learning', 'Figma', 'GitHub', 'HTML/CSS', 'Java', 
-                  'Javascript', 'Linux', 'MYSQL', 'Machine Learning', 
-                  'Node.js', 'Oracle', 'Photoshop', 'Python', 
-                  'Pytorch', 'R', 'React', 'Tensorflow', 'Wire Shark')
+    skillsList = ('Angular', 'Ansible', 'BASH/SHELL', 'C/C++', 'Cisco Packet Tracer', 'Deep Learning',
+                'Figma', 'GitHub', 'HTML/CSS', 'Java', 'JavaScript', 'Linux', 'Machine Learning', 'MySQL',
+                'Node.js', 'Oracle', 'Photoshop', 'PyTorch', 'Python', 'R', 'React', 'TensorFlow', 'Wireshark')
     
     # Drop-down for skill selections
     skill_1 = st.selectbox('Skill 1', skillsList, index=21)
