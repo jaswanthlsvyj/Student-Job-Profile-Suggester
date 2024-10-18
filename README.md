@@ -71,3 +71,5 @@ pip install -r requirements.txt
 3. **Push to GitHub**: Once you've updated the README file, you can commit and push your changes to your GitHub repository.
 
 Let me know if you need any further assistance!
+
+Note: Used https://app.mostly.ai/d/home to generate some more data from already existing data where the model is able to provide 85% accurate dataset
