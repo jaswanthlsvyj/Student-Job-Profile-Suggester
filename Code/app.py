@@ -65,12 +65,13 @@ def main():
     st.write("### How to Use This Application")
     st.write(
         """
-        1. Use the sliders to enter your scores in various subjects including DSA, DBMS, Operating Systems, 
-           Computer Networks, Mathematics, Aptitude, Communication, Problem Solving, Creativity, and Hackathons.
-        2. Select your top two skills from the dropdown lists provided.
+        1. Select your top two skills from the dropdown lists provided.
+        2. Use the sliders to enter your scores in various subjects including DSA, DBMS, Operating Systems, Computer Networks, Mathematics, Aptitude, Communication, Problem Solving, Creativity, and Hackathons.
         3. Click the **Predict Job Profile** button to see your predicted job profile based on the entered information.
         """
     )
+
+    st.warning("Note: The model doesn't solely depends on yours skills, but also on the scores you given. Model suggests according your scores and skills combined.")
 
     # Get user input
     user_input_original = get_user_input()
